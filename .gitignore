@@ -1,14 +1,23 @@
 # Data
 data/raw/
+data/raw_clean/
+data/raw_masks/
+data/raw_masks_clean/
 data/processed/
-models/
+data/splits/
+
+# trained model weights / outputs
+models/*.pth
 results/
+runs/
 
 # Python
 __pycache__/
 *.py[cod]
 *.egg-info/
 *.so
+pip-log.txt
+
 
 # Jupyter
 .ipynb_checkpoints/
@@ -18,4 +27,7 @@ __pycache__/
 venv/
 
 # OS
+.vscode/
+*.swp
 .DS_Store
+
