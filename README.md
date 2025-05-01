@@ -27,23 +27,29 @@ This project implements a complete pipeline for multimodal pavement-defect segme
 ## Project Structure
 ```
 .
-├── assets
-├── data
-│   ├── processed
-│   ├── raw
-│   └── splits
-├── models
-├── notebooks
-├── results
-│   ├── metrics
-│   └── predictions
-└── src
-    ├── data_preprocessing
-    ├── evaluation
-    ├── models
-    └── training
-
-16 directories
+├── data/
+│   ├── processed/          # Processed data ready for training
+│   │   ├── depth/          # Generated depth maps
+│   │   ├── mask/           # Binary segmentation masks
+│   │   └── rgb/            # RGB images
+│   ├── raw/                # Original raw data
+│   ├── raw_clean/          # Cleaned raw data
+│   ├── raw_masks/          # Original masks
+│   ├── raw_masks_clean/    # Cleaned masks
+│   └── splits/             # Train/val/test splits
+├── models/                 # Saved model checkpoints
+│   ├── best_unet_rgb.pth   # RGB-only model
+│   └── best_unet_rgbd.pth  # RGBD model
+├── notebooks/              # Jupyter notebooks
+├── scripts/                # Utility scripts
+├── src/
+│   ├── data/               # Dataset implementation
+│   ├── data_preprocessing/ # Data processing scripts
+│   ├── evaluation/         # Evaluation & visualization
+│   ├── models/             # Model architectures
+│   └── training/           # Training scripts
+├── visualizations/         # Model prediction visualizations
+└── requirements.txt        # Project dependencies
 ```
 
 ## Setup
