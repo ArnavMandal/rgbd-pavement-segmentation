@@ -5,6 +5,8 @@ data/raw_masks/
 data/raw_masks_clean/
 data/processed/
 data/splits/
+data/raw_masks_lane_archive
+
 
 # trained model weights / outputs
 models/*.pth
@@ -31,3 +33,4 @@ venv/
 *.swp
 .DS_Store
 
+visualizations/

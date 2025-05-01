@@ -18,10 +18,11 @@ EARLY_STOP_PATIENCE = 5
 TRAIN_CSV     = "data/splits/train.csv"
 VAL_CSV       = "data/splits/val.csv"
 RGB_DIR       = "data/processed/rgb"
+DEPTH_DIR     = "data/processed/depth"    # ← your depth maps
 MASK_DIR      = "data/processed/mask"
 
-CHECKPOINT    = "models/best_unet_rgb.pth"
-LOG_SUBDIR    = "rgb_only"
+CHECKPOINT    = "models/best_unet_rgbd.pth"
+LOG_SUBDIR    = "rgbd_fusion"
 # ——————————————————————————————————————————————————————————————————————
 
 def main():
@@ -34,7 +35,7 @@ def main():
     else:
         num_workers = 4
 
-    print(">>> RGB-only Training configuration:")
+    print(">>> RGB-D Training configuration:")
     print(f"  Device:        {DEVICE}")
     print(f"  Batch size:    {BATCH_SIZE}")
     print(f"  Learning rate: {LR}")
@@ -45,12 +46,14 @@ def main():
         split_csv=TRAIN_CSV,
         rgb_dir=RGB_DIR,
         mask_dir=MASK_DIR,
+        depth_dir=DEPTH_DIR,
         split_prefix="train_"
     )
     val_ds = PavementDataset(
         split_csv=VAL_CSV,
         rgb_dir=RGB_DIR,
         mask_dir=MASK_DIR,
+        depth_dir=DEPTH_DIR,
         split_prefix="val_"
     )
 
@@ -64,7 +67,7 @@ def main():
     )
 
     # — model / loss / optimizer / scheduler —
-    model     = UNet(n_channels=3, n_classes=1).to(DEVICE)
+    model     = UNet(n_channels=4, n_classes=1).to(DEVICE)
     criterion = nn.BCEWithLogitsLoss()
     optimizer = optim.Adam(model.parameters(), lr=LR)
     scheduler = ReduceLROnPlateau(optimizer, mode="min", factor=0.5,
