@@ -50,3 +50,24 @@ This project implements a complete pipeline for multimodal pavement-defect segme
 1. Clone this repo
 2. Run `pip install -r requirements.txt`
 
+## 📝 Summary of Results
+
+We compared two variants of our U-Net segmentation model on the test split:
+
+1. **RGB-only (3-channel)**
+   - Mean Intersection-over-Union (IoU): **0.9907 ± 0.0093**  
+   - Mean Dice score: **0.9952 ± 0.0048**
+
+2. **RGB-D (4-channel fusion)**
+   - Mean Intersection-over-Union (IoU): **0.9888 ± 0.0112**  
+   - Mean Dice score: **0.9942 ± 0.0058**
+
+> **Key takeaways:**  
+> - Both models achieve excellent performance with IoU and Dice scores above 0.98
+> - The RGB-only model shows slightly better performance by the metrics
+> - Generated depth maps using MiDaS provide an additional modality for analysis
+> - Visual comparisons of both models are available in the visualizations directory
+> - Future work could explore different depth estimation methods or fusion strategies
+
+These findings suggest that while monocular depth estimation adds an interesting dimension to the analysis, our current RGB-only model already achieves highly accurate segmentation results for this task.
+
